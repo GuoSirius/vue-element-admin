@@ -11,6 +11,8 @@ tests/e2e/reports
 selenium-debug.log
 
 # Editor directories and files
+.svn
+.git
 .idea
 .vscode
 *.suo

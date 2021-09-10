@@ -1,0 +1,220 @@
+@import "./swiper-bundle.min.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 20201111 fixed rem */
+.no-real-rem {
+  font-size: 16px;
+}
+
+/* 20200606 统一去掉 404 显示 */
+.global-404-wrapper {
+  display: none !important;
+}
+
+/* 20210113 优化 UEditor */
+.gs-ueditor *, [class*="edui-"] {
+  box-sizing: content-box;
+}
+
+[class*="edui-"] input {
+  appearance: button;
+  -moz-appearance: button; /* Firefox */
+  -webkit-appearance: button; /* Safari 和 Chrome */
+}
+
+[class*="edui-"] input[type="radio"] {
+  appearance: radio;
+  -moz-appearance: radio; /* Firefox */
+  -webkit-appearance: radio; /* Safari 和 Chrome */
+}
+
+[class*="edui-"] input[type="checkbox"] {
+  appearance: checkbox;
+  -moz-appearance: checkbox; /* Firefox */
+  -webkit-appearance: checkbox; /* Safari 和 Chrome */
+}
+
+[class*="edui-"] th,
+[class*="edui-"] td {
+  vertical-align: middle;
+}
+
+/* APP launch loading start */
+.app-loading-wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20210609;
+  background-color: #49a9ee;
+  background-color: transparent;
+  transition: all 0.3s 0s ease-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+}
+
+.application-loaded .app + .app-loading-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: all 0.3s 1.5s ease-out;
+}
+
+.app-loading-wrapper .app-loading-circle {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: -128px 0 0 -75px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 3px solid transparent;
+  border-top-color: #FFF;
+  border-top-color: #29dc47;
+  border-radius: 50%;
+  -webkit-animation: appLoadingSpin 2s linear 0s infinite;
+  animation: appLoadingSpin 2s linear 0s infinite;
+  transition: all 0.5s ease-out;
+  z-index: 2;
+}
+
+.application-loaded .app + .app-loading-wrapper .app-loading-circle {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.app-loading-wrapper .app-loading-circle::before,
+.app-loading-wrapper .app-loading-circle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #FFF;
+}
+
+.app-loading-wrapper .app-loading-circle::before {
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  border-top-color: #e74c3c;
+  -webkit-animation: appLoadingSpin 3s linear 0s infinite;
+  animation: appLoadingSpin 3s linear 0s infinite;
+}
+
+.app-loading-wrapper .app-loading-circle::after {
+  top: 18px;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  border-top-color: #f9c922;
+  -webkit-animation: appLoadingSpin 1.5s linear 0s infinite;
+  animation: appLoadingSpin 1.5s linear 0s infinite;
+}
+
+.app-loading-wrapper .app-loading-section {
+  display: block;
+  width: 51%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: #49a9ee;
+  z-index: 1;
+  transform: translateX(0);
+  transition: all 0.5s 0s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.application-loaded .app + .app-loading-wrapper .app-loading-section {
+  transition: all 0.8s 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.app-loading-wrapper .app-loading-section.app-loading-section-left {
+  left: 0;
+  right: auto;
+}
+
+.application-loaded .app + .app-loading-wrapper .app-loading-section.app-loading-section-left {
+  transform: translateX(-100%);
+}
+
+.app-loading-wrapper .app-loading-section.app-loading-section-right {
+  left: auto;
+  right: 0;
+}
+
+.application-loaded .app + .app-loading-wrapper .app-loading-section.app-loading-section-right {
+  transform: translateX(100%);
+}
+
+.app-loading-wrapper .app-loading-text {
+  width: 100%;
+  line-height: 36px;
+  margin-top: 96px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #FFF;
+  font-size: 16px;
+  font-family: 'Open Sans', 'Microsoft YaHei', 'sans-serif';
+  letter-spacing: 3px;
+  z-index: 3;
+  opacity: 1;
+  transition: all 0.3s ease-out;
+  -webkit-animation: appLoadingText 1.5s linear 0s infinite alternate;
+  animation: appLoadingText 1.5s linear 0s infinite alternate;
+}
+
+.application-loaded .app + .app-loading-wrapper .app-loading-text {
+  opacity: 0;
+}
+
+@-webkit-keyframes appLoadingSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes appLoadingSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes appLoadingText {
+  0% {
+    transform: translateX(12px) skew(6deg, -2deg);
+  }
+  100% {
+    transform: translateX(-12px) skew(-6deg, 2deg);
+  }
+}
+
+@keyframes appLoadingText {
+  0% {
+    transform: translateX(12px) skew(6deg, -2deg);
+  }
+  100% {
+    transform: translateX(-12px) skew(-6deg, 2deg);
+  }
+}
+/* APP launch loading end */
